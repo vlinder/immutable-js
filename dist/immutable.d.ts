@@ -1814,6 +1814,17 @@ declare module Immutable {
     hasIn(searchKeyPath: Array<any>): boolean;
     hasIn(searchKeyPath: Iterable<any, any>): boolean;
 
+    // Debugging
+
+    /**
+     * Outputs the Iterable to the console after running `toJS` on it.
+     *
+     * This log function make it easy to debug method chains. It returns the
+     * Iterable unchanged. If a message is provided, it will be logged before
+     * the Iterable. If a function is provided, it will get the Iterable
+     * unchanged to log or do with as it pleases.
+     */
+    log(messageOrFunc?: any): /*this*/Iterable<K, V>;
 
     // Conversion to JavaScript types
 
