@@ -4233,6 +4233,16 @@
       return new ToIndexedSequence(this);
     },
 
+    log: function(messageOrFunc) {
+      if(typeof messageOrFunc === 'function') {
+        messageOrFunc(this);
+      }
+      else if(typeof console !== 'undefined' && console !== null) {
+        console.log && console.log(messageOrFunc, this.toJS());
+      }
+      return this;
+    },
+
     toJS: function() {
       return this.toSeq().map(
         function(value ) {return value && typeof value.toJS === 'function' ? value.toJS() : value}

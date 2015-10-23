@@ -60,6 +60,16 @@ mixin(Iterable, {
     return new ToIndexedSequence(this);
   },
 
+  log(messageOrFunc) {
+    if(typeof messageOrFunc === 'function') {
+      messageOrFunc(this);
+    }
+    else if(typeof console !== 'undefined' && console !== null) {
+      console.log && console.log(messageOrFunc, this.toJS());
+    }
+    return this;
+  },
+
   toJS() {
     return this.toSeq().map(
       value => value && typeof value.toJS === 'function' ? value.toJS() : value
